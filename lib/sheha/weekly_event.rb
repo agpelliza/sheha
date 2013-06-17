@@ -1,10 +1,17 @@
 class Sheha::WeeklyEvent < Sheha::Event
-  WEEK_DAYS = Date.const_get(:DAYNAMES).map {|week_day| week_day.downcase.to_sym}
-  attr_alias :week_day, :id
+  attr_instance_var :week_day, :id
 
   def initialize(week_day)
-    raise "There is no #{week_day} in a week." unless valid_week_day? week_day
+    Sheha::Helper.validate_week_day(week_day)
     super week_day
+  end
+
+  def event?(date)
+    week_day == "#{date.strftime('%A').downcase}"
+  end
+
+  def <=>(other)
+    Sheha::Helper.find_week_day_index(week_day) <=> Sheha::Helper.find_week_day_index(other.week_day)
   end
 
   def succ
@@ -12,12 +19,8 @@ class Sheha::WeeklyEvent < Sheha::Event
   end
 
   private
-    def valid_week_day?(week_day)
-      WEEK_DAYS.member? week_day
-    end
-
     def succ_week_day
-      return WEEK_DAYS[0] if WEEK_DAYS.find_index(week_day) == 6
-      WEEK_DAYS[WEEK_DAYS.find_index(week_day) +1]
+      return Sheha::Helper.week_day_at(1) if Sheha::Helper.find_week_day_index(week_day) == 7
+      Sheha::Helper.week_day_at(Sheha::Helper.find_week_day_index(week_day) + 1)
     end
 end

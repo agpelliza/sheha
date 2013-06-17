@@ -8,11 +8,11 @@ class Sheha::Event
   end
 
   def ==(other)
-    @id == other.id
+    @id == other.instance_variable_get("@id")
   end
 
   def eql?(other)
-    @id.eql? other.id
+    @id.eql? other.instance_variable_get("@id")
   end
 
   def hash
@@ -20,7 +20,7 @@ class Sheha::Event
   end
 
   def <=>(other)
-    @id <=> other.id
+    @id <=> other.instance_variable_get("@id")
   end
 
   def succ

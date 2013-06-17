@@ -1,7 +1,11 @@
 class Sheha::OneTimeEvent < Sheha::Event
-  attr_alias :date, :id
+  attr_instance_var :date, :id
 
   def initialize(date)
     super date
+  end
+
+  def event?(date)
+    self.date == date
   end
 end

@@ -2,7 +2,7 @@ class Sheha::YearlyEvent < Sheha::Event
   def initialize(month, month_day)
     Sheha::Helper.validate_month(month)
     Sheha::Helper.validate_month_day(month_day)
-    super "#{month}#{month_day}".to_i
+    super "#{month}#{two_digits_day(month_day)}".to_i
   end
 
   def month
@@ -20,7 +20,7 @@ class Sheha::YearlyEvent < Sheha::Event
 
   def month_day=(month_day)
     Sheha::Helper.validate_month_day(month_day)
-    @id = "#{four_digits_id[0..1]}#{month_day}".to_i
+    @id = "#{four_digits_id[0..1]}#{two_digits_day(month_day)}".to_i
   end
 
   def event?(date)
@@ -32,6 +32,10 @@ class Sheha::YearlyEvent < Sheha::Event
   end
 
   private
+    def two_digits_day(day)
+      "%02d" % day
+    end
+
     def four_digits_id
       "%04d" % @id
     end

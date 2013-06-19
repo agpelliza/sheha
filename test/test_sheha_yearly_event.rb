@@ -8,6 +8,11 @@ class ShehaYearlyEventTest < Test::Unit::TestCase
     assert event.is_a? Sheha::YearlyEvent
   end
 
+  def test_new_yearly_event_with_one_digit_month_and_day
+    event = Sheha::YearlyEvent.new(2, 5)
+    assert event.is_a? Sheha::YearlyEvent
+  end
+
   def test_yearly_event_raise_exception_if_invalid_month
     assert_raise Sheha::InvalidMonthError do
       Sheha::YearlyEvent.new(13, 25)
@@ -24,6 +29,12 @@ class ShehaYearlyEventTest < Test::Unit::TestCase
     event = Sheha::YearlyEvent.new(12, 25)
     assert_equal(12, event.month)
     assert_equal(25, event.month_day)
+  end
+
+  def test_yearly_event_has_given_one_digit_month_and_day
+    event = Sheha::YearlyEvent.new(2, 5)
+    assert_equal(2, event.month)
+    assert_equal(5, event.month_day)
   end
 
   def test_yearly_event_set_month
@@ -57,9 +68,19 @@ class ShehaYearlyEventTest < Test::Unit::TestCase
     assert_equal(Sheha::YearlyEvent.new(12, 25), event)
   end
 
+  def test_yearly_event_with_one_digit_month_and_day_compare_as_equal
+    event = Sheha::YearlyEvent.new 2, 5
+    assert_equal(Sheha::YearlyEvent.new(2, 5), event)
+  end
+
   def test_yearly_event_compare_as_not_equal
     event = Sheha::YearlyEvent.new 12, 25
     assert_not_equal(Sheha::YearlyEvent.new(12, 26), event)
+  end
+
+  def test_yearly_event_with_one_digit_month_and_day_compare_as_not_equal
+    event = Sheha::YearlyEvent.new 2, 5
+    assert_not_equal(Sheha::YearlyEvent.new(2, 6), event)
   end
 
   def test_yearly_event_eql_and_hash_eval_as_equal
@@ -79,6 +100,11 @@ class ShehaYearlyEventTest < Test::Unit::TestCase
   def test_yearly_event_has_succ
     event = Sheha::YearlyEvent.new(12, 25)
     assert_equal(Sheha::YearlyEvent.new(12, 26), event.succ)
+  end
+
+  def test_yearly_event_with_one_digit_month_and_day_has_succ
+    event = Sheha::YearlyEvent.new(2, 5)
+    assert_equal(Sheha::YearlyEvent.new(2, 6), event.succ)
   end
 
   def test_yearly_events_are_ranges

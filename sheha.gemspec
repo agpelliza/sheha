@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'sheha'
-  s.version     = '0.0.0'
+  s.version     = '0.0.1'
   s.date        = '2013-06-17'
   s.summary     = "Simple Holidays & Events Handler"
   s.description = "A Simple Holidays & Events Handler Gem"

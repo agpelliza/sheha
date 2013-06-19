@@ -8,6 +8,18 @@ class ShehaEventTest < Test::Unit::TestCase
     assert event.is_a? Sheha::Event
   end
 
+  def test_event_can_have_name
+    event = Sheha::Event.new 'my_id'
+    event.name = "My Name"
+    assert_equal("My Name", event.name)
+  end
+
+  def test_event_can_have_name
+    event = Sheha::Event.new 'my_id'
+    event.description = "My Description"
+    assert_equal("My Description", event.description)
+  end
+
   def test_event_compare_as_equal
     event = Sheha::Event.new 'my_id'
     assert_equal(Sheha::Event.new('my_id'), event)

@@ -14,5 +14,5 @@ You may provide just the dates you need to hold (like non-working days, for sayi
 As usual, you can install it using rubygems.
 
 ```
-$ gem install mote
+$ gem install sheha
 ```

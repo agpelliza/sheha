@@ -7,6 +7,35 @@ class Sheha
     @events = Set.new
   end
 
+###################################
+  # def test_event
+  #   sheha = Sheha.new
+  #   sheha.create_event :one_time do
+  #     year      2013
+  #     month     12
+  #     day       25
+  #   end
+  # end
+
+  # def create_event(ocurrence, &block)
+  #   event = Event.new(ocurrence)
+  #   event.create(&block)
+  #   events.add event
+  # end
+
+  # def new(ocurrence)
+  #   self.send(ocurrence)
+  # end
+
+  # def one_time
+  #   @ocurrence = OneTimeOcurrence.new
+  # end
+
+  # def create(&block)
+  #   instance_eval(&block)
+  # end
+##########################################
+
   def add(event)
     @events.add event
   end
